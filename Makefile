@@ -31,7 +31,7 @@ bin/signed-s3-url-generator_darwin_arm: *.go ## create binary for Mac on ARM
 bin/signed-s3-url-generator.exe: *.go ## create binary for Windows
 > GOOS=linux GOARCH=amd64 go build -o $@
 
-bin/all: bin/signed-s3-url-generator_amd64 bin/signed-s3-url-generator_darwin bin/signed-s3-url-generator_darwin_arm bin/signed-s3-url-generator.exe ##create binaries for all platforms
+bin/all: bin/signed-s3-url-generator_amd64 bin/signed-s3-url-generator_darwin bin/signed-s3-url-generator_darwin_arm bin/signed-s3-url-generator.exe ## create binaries for all platforms
 
 asdf/install: ## install asdf for bash
 > @if ! command -v asdf &> /dev/null

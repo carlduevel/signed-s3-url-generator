@@ -1,0 +1,29 @@
+name: Build
+on:
+  push:
+    branches:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v1
+
+      - name: asdf cache
+        id: asdf-cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.asdf/
+          key: ${{ runner.os }}-${{ hashFiles('**/.tool-versions') }}
+
+      - name: Install CD tools from .tool-versions
+        if: steps.asdf-cache.outputs.cache-hit != 'true'
+        uses: asdf-vm/actions/install@v1
+
+      - name: Build
+        run: make bin/signed-s3-url-generator_amd64
