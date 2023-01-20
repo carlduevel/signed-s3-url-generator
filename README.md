@@ -1,4 +1,5 @@
 # signed-s3-url-generator
+[![Build](https://github.com/carlduevel/signed-s3-url-generator/actions/workflows/build.yml/badge.svg)](https://github.com/carlduevel/signed-s3-url-generator/actions/workflows/build.yml)
 
 Tiny tool to generate [presigned AWS S3
 URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html).
