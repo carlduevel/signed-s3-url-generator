@@ -33,6 +33,21 @@ bin/signed-s3-url-generator.exe: *.go ## create binary for Windows
 
 bin/all: bin/signed-s3-url-generator_amd64 bin/signed-s3-url-generator_darwin bin/signed-s3-url-generator_darwin_arm bin/signed-s3-url-generator.exe ##create binaries for all platforms
 
+asdf/install: ## install asdf for bash
+> @if ! command -v asdf &> /dev/null
+> @then
+>     echo "Installing ASDF for Bash"
+>     @git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+>     @echo -e '\nsource $$HOME/.asdf/asdf.sh' >> ~/.bashrc
+>     @source $$HOME/.asdf/asdf.sh
+> @fi
+
+asdf/install-plugins: ## install all tools needed with the asdf version manager
+> @cut -d' ' -f1 .tool-versions|xargs -i asdf plugin add {} || true
+
+asdf/install-tools: asdf/install-plugins ## install all tools needed with the asdf version manager
+> @asdf install
+
 help:
 > egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
