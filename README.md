@@ -15,7 +15,7 @@ signed-s3-url-generator -b mybucket -k 'key/to/save/this/file/under/example.txt'
 ```
 On the machine without S3 authorization run:
 ```
-curl <url generated earlier> --upload-file example.txt
+curl '<url generated earlier>' --upload-file example.txt --progress-bar | cat
 ```
 
 
