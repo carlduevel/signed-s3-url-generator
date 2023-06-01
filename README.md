@@ -13,7 +13,7 @@ presigned url:
 ```
 signed-s3-url-generator -b mybucket -k 'key/to/save/this/file/under/example.txt'
 ```
-On the machine without S3 authorization run:
+On the machine without S3 authorization run ([works for files < 5 GB](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html)):
 ```
 curl '<url generated earlier>' --upload-file example.txt --progress-bar | cat
 ```
